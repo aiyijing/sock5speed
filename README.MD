@@ -14,5 +14,5 @@ python Speed.py --args
 --verb  (显示下载内容)  
 --loop  (是否循环)  
 --help  (帮助)  
-* example
+* example  
 python Speed.py --proxy=127.0.0.1:1080 --url=http://www.baidu.com --loop --time=3  
