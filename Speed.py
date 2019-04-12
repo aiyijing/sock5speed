@@ -15,7 +15,7 @@ def down_speed(url):
     try:
 
         start = time.clock()
-        resp = requests.get(url, timeout=3)
+        resp = requests.get(url, timeout=5)
         end = time.clock()
 
         total_time = end-start
@@ -28,9 +28,8 @@ def down_speed(url):
         speed = content_length / float(total_time)
 
         return total_time, speed, resp
-    except requests.Timeout as e:
-        print("Time out {}".format(e))
-        return None
+    except Exception:
+        return None, None, None
 
 
 if __name__ == "__main__":
@@ -98,7 +97,13 @@ if __name__ == "__main__":
 
         if response:
             hit_count += 1
-
+        else:
+            print("Count: {}\ttotal:  \tTime Out\t HitRatio:{:.4}%".format(
+                    count,
+                    hit_count / float(count) * 100
+                )
+            )
+            continue
         print("Count: {}\ttotal: {:.8} s\tspeed: {:.8} KB/sec\t HitRatio:{:.4}%".format(
                 count,
                 total_time,
